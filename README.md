@@ -46,5 +46,5 @@ module.exports = {
 is equivalent to
 
 ```javascript
-var template = _.template('<%= data.name %>', {variable: 'data'})({color: '#000'});
+var template = _.template('<%= data.color %>', {variable: 'data'})({color: '#000'});
 ```
