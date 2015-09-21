@@ -9,7 +9,7 @@ npm install replace-loader
 
 ## Usage
 
-```
+```css
 body{
     background-color: <%= data.color %>;
 }
