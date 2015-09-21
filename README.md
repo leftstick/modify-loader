@@ -4,7 +4,7 @@
 ## Installation
 
 ```bash
-npm install replace-loader
+npm install replace-loader --save-dev
 ```
 
 ## Usage
