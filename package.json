@@ -1,0 +1,22 @@
+{
+  "name": "replace-loader",
+  "version": "1.0.0",
+  "description": "LoDash templates loader for webpack. The compiled string returned.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leftstick/replace-loader.git"
+  },
+  "keywords": [
+    "lodash",
+    "template",
+    "webpack",
+    "loader"
+  ],
+  "author": "Howard.Zuo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leftstick/replace-loader/issues"
+  },
+  "homepage": "https://github.com/leftstick/replace-loader#readme"
+}
