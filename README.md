@@ -3,6 +3,7 @@
 
 [![NPM version][npm-image]][npm-url]
 ![][david-url]
+![][travis-url]
 
 [LoDash](http://lodash.com/docs#template) templates loader for [webpack](http://webpack.github.io/). The compiled string returned.
 
@@ -114,3 +115,4 @@ module.exports = {
 [npm-url]: https://npmjs.org/package/modify-loader
 [npm-image]: https://badge.fury.io/js/modify-loader.png
 [david-url]: https://david-dm.org/leftstick/modify-loader.png
+[travis-url]:https://api.travis-ci.org/leftstick/modify-loader.svg?branch=master
