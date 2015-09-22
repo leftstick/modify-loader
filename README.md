@@ -18,15 +18,16 @@ body{
 ```
 
 ```javascript
-var options = {
-    variable: 'data'
-};
+var querys = JSON.stringify({
+    options: {
+        variable: 'data'
+    },
+    value: {
+        color: '#000'
+    }
+});
 
-var obj = {
-    color: '#000'
-};
-
-var template = require("modify!./file.css?options="+ JSON.stringify(options) +"&value=" + JSON.stringify(obj));
+var template = require("modify!./file.css?"+ querys);
 // => returns the compiled string with lodash templating method.
 console.log(template);
 // body{
@@ -38,18 +39,19 @@ console.log(template);
 This webpack config can load arbitrary text files.
 
 ```javascript
-var options = {
-    variable: 'data'
-};
-
-var obj = {
-    color: '#000'
-};
+var querys = JSON.stringify({
+    options: {
+        variable: 'data'
+    },
+    value: {
+        color: '#000'
+    }
+});
 
 module.exports = {
   module: {
     loaders: [
-      { test: /\.css$/, loader: "style!css!modify?options="+ JSON.stringify(options) +"&value=" + JSON.stringify(obj)) }
+      { test: /\.css$/, loader: "style!css!modify?" + querys }
     ]
   }
 };
@@ -61,3 +63,12 @@ var template = _.template('body{  background-color: <%= data.color %>;  }', {var
 ```
 
 > The `options` is optional, and the same as [lodash-template-options](https://lodash.com/docs#template)
+> The `value` will be used as interpolated data
+
+## Special Case
+
+Since `JSON` doesn't support regular expression, so it's not possible to pass a `RegExp` directly, which means for following options, we need workaround for them:
+
+- escape
+- evaluate
+- interpolate
