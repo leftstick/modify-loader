@@ -10,10 +10,14 @@ module.exports = function(source) {
     try {
         if (querys.options) {
             settings = querys.options;
+            if (settings.escape) {
+                settings.escape = new RegExp(settings.escape.pattern, settings.escape.attributes);
+            }
+            if (settings.evaluate) {
+                settings.evaluate = new RegExp(settings.evaluate.pattern, settings.evaluate.attributes);
+            }
             if (settings.interpolate) {
-                var pattern = settings.interpolate.pattern;
-                var attributes = settings.interpolate.attributes;
-                settings.interpolate = new RegExp(pattern, attributes);
+                settings.interpolate = new RegExp(settings.interpolate.pattern, settings.interpolate.attributes);
             }
         }
         if (querys.value) {
