@@ -18,11 +18,15 @@ body{
 ```
 
 ```javascript
+var options = {
+    variable: 'data'
+};
+
 var obj = {
     color: '#000'
 };
 
-var template = require("modify!./file.css?variable=data&val=" + JSON.stringify(obj));
+var template = require("modify!./file.css?options="+ JSON.stringify(options) +"&value=" + JSON.stringify(obj));
 // => returns the compiled string with lodash templating method.
 console.log(template);
 // body{
@@ -34,13 +38,18 @@ console.log(template);
 This webpack config can load arbitrary text files.
 
 ```javascript
+var options = {
+    variable: 'data'
+};
+
 var obj = {
     color: '#000'
 };
+
 module.exports = {
   module: {
     loaders: [
-      { test: /\.css$/, loader: "style!css!modify?variable=data&val=" + JSON.stringify(obj)) }
+      { test: /\.css$/, loader: "style!css!modify?options="+ JSON.stringify(options) +"&value=" + JSON.stringify(obj)) }
     ]
   }
 };
@@ -51,4 +60,4 @@ is equivalent to
 var template = _.template('body{  background-color: <%= data.color %>;  }', {variable: 'data'})({color: '#000'});
 ```
 
-> Once you have an `Object` wants to be passed to the loader, `JSON.stringify` is mandatory and must set to `val`
+> The `options` is optional, and the same as [lodash-template-options](https://lodash.com/docs#template)
