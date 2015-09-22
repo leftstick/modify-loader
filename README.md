@@ -72,3 +72,28 @@ Since `JSON` doesn't support regular expression, so it's not possible to pass a 
 - escape
 - evaluate
 - interpolate
+
+For solving this issue, we pass `Object` which contains `pattern` and `attributes` as following:
+
+```javascript
+var querys = JSON.stringify({
+    options: {
+        variable: 'data',
+        interpolate: {
+            pattern: '%([\\s\\S]+?)%',
+            attributes: 'g'
+        }
+    },
+    value: {
+        color: '#000'
+    }
+});
+
+module.exports = {
+  module: {
+    loaders: [
+      { test: /\.css$/, loader: "style!css!modify?" + querys }
+    ]
+  }
+};
+```
