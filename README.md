@@ -1,13 +1,15 @@
-# replace-loader
+# modify-loader
 [LoDash](http://lodash.com/docs#template) templates loader for [webpack](http://webpack.github.io/). The compiled string returned.
 
 ## Installation
 
 ```bash
-npm install replace-loader --save-dev
+npm install modify-loader --save-dev
 ```
 
 ## Usage
+
+*file.css*
 
 ```css
 body{
@@ -20,7 +22,7 @@ var obj = {
     color: '#000'
 };
 
-var template = require("replace!./file.txt?variable=data&val=" + JSON.stringify(obj));
+var template = require("modify!./file.css?variable=data&val=" + JSON.stringify(obj));
 // => returns the compiled string with lodash templating method.
 console.log(template);
 // body{
@@ -38,7 +40,7 @@ var obj = {
 module.exports = {
   module: {
     loaders: [
-      { test: /\.css$/, loader: "style!css!replace?variable=data&val=" + JSON.stringify(obj)) }
+      { test: /\.css$/, loader: "style!css!modify?variable=data&val=" + JSON.stringify(obj)) }
     ]
   }
 };
@@ -46,5 +48,7 @@ module.exports = {
 is equivalent to
 
 ```javascript
-var template = _.template('<%= data.color %>', {variable: 'data'})({color: '#000'});
+var template = _.template('body{  background-color: <%= data.color %>;  }', {variable: 'data'})({color: '#000'});
 ```
+
+> Once you have an `Object` wants to be passed to the loader, `JSON.stringify` is mandatory and must set to `val`

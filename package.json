@@ -1,11 +1,11 @@
 {
-  "name": "replace-loader",
+  "name": "modify-loader",
   "version": "1.0.0",
   "description": "LoDash templates loader for webpack. The compiled string returned.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leftstick/replace-loader.git"
+    "url": "git+https://github.com/leftstick/modify-loader.git"
   },
   "keywords": [
     "lodash",
@@ -16,7 +16,7 @@
   "author": "Howard.Zuo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leftstick/replace-loader/issues"
+    "url": "https://github.com/leftstick/modify-loader/issues"
   },
-  "homepage": "https://github.com/leftstick/replace-loader#readme"
+  "homepage": "https://github.com/leftstick/modify-loader#readme"
 }
