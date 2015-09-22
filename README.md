@@ -1,4 +1,9 @@
 # modify-loader
+==================
+
+[![NPM version][npm-image]][npm-url]
+![][david-url]
+
 [LoDash](http://lodash.com/docs#template) templates loader for [webpack](http://webpack.github.io/). The compiled string returned.
 
 ## Installation
@@ -97,3 +102,15 @@ module.exports = {
   }
 };
 ```
+
+
+## LICENSE ##
+
+[MIT License](https://raw.githubusercontent.com/leftstick/modify-loader/master/LICENSE)
+
+
+
+
+[npm-url]: https://npmjs.org/package/modify-loader
+[npm-image]: https://badge.fury.io/js/modify-loader.png
+[david-url]: https://david-dm.org/leftstick/modify-loader.png
