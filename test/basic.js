@@ -5,17 +5,11 @@ describe('basic test', function() {
     'use strict';
 
     it('all good', function(done) {
-        var querys = JSON.stringify({
-            options: {
-                variable: 'data'
-            },
-            value: {
-                color: '#000'
-            }
-        });
+        var options = JSON.stringify({variable: 'data'});
+        var value = JSON.stringify({color: '#000'});
 
         var ctx = {
-            query: '?' + querys,
+            query: '?options=' + new Buffer(options).toString('base64') + '&value=' + new Buffer(value).toString('base64'),
             callback: function(err, value) {
                 should(value).eql('body{  background-color: #000;  }', 'output incorrect');
                 done();
@@ -25,10 +19,10 @@ describe('basic test', function() {
     });
 
     it('without options', function(done) {
-        var query = JSON.stringify({value: {color: '#000'}});
+        var value = JSON.stringify({color: '#000'});
 
         var ctx = {
-            query: '?' + query,
+            query: '?value=' + new Buffer(value).toString('base64'),
             callback: function(err, value) {
                 should(value).eql('body{  background-color: #000;  }', 'output incorrect');
                 done();
@@ -48,20 +42,16 @@ describe('basic test', function() {
     });
 
     it('change interpolate', function(done) {
-        var querys = JSON.stringify({
-            options: {
-                variable: 'data',
-                interpolate: {
-                    pattern: '%([\\s\\S]+?)%'
-                }
-            },
-            value: {
-                color: '#000'
+        var options = JSON.stringify({
+            variable: 'data',
+            interpolate: {
+                pattern: '%([\\s\\S]+?)%'
             }
         });
+        var value = JSON.stringify({color: '#000'});
 
         var ctx = {
-            query: '?' + querys,
+            query: '?options=' + new Buffer(options).toString('base64') + '&value=' + new Buffer(value).toString('base64'),
             callback: function(err, value) {
                 should(value).eql('body{  background-color: #000;  }', 'output incorrect');
                 done();

@@ -24,16 +24,10 @@ body{
 ```
 
 ```javascript
-var querys = JSON.stringify({
-    options: {
-        variable: 'data'
-    },
-    value: {
-        color: '#000'
-    }
-});
+var options = JSON.stringify({ variable: 'data' });
+var value = JSON.stringify({ color: '#000' });
 
-var template = require("modify!./file.css?"+ querys);
+var template = require("modify!./file.css?options=" + new Buffer(options).toString('base64') + '&value=' + new Buffer(value).toString('base64'));
 // => returns the compiled string with lodash templating method.
 console.log(template);
 // body{
@@ -45,19 +39,12 @@ console.log(template);
 This webpack config can load arbitrary text files.
 
 ```javascript
-var querys = JSON.stringify({
-    options: {
-        variable: 'data'
-    },
-    value: {
-        color: '#000'
-    }
-});
+var options = JSON.stringify({ variable: 'data' });
 
 module.exports = {
   module: {
     loaders: [
-      { test: /\.css$/, loader: "style!css!modify?" + querys }
+      { test: /\.css$/, loader: "style!css!modify?options=" + new Buffer(options).toString('base64') }
     ]
   }
 };
@@ -82,23 +69,20 @@ Since `JSON` doesn't support regular expression, so it's not possible to pass a 
 For solving this issue, we pass `Object` which contains `pattern` and `attributes` as following:
 
 ```javascript
-var querys = JSON.stringify({
-    options: {
-        variable: 'data',
-        interpolate: {
-            pattern: '%([\\s\\S]+?)%',
-            attributes: 'g'
-        }
-    },
-    value: {
-        color: '#000'
+var options = JSON.stringify({
+    variable: 'data',
+    interpolate: {
+        pattern: '%([\\s\\S]+?)%',
+        attributes: 'g'
     }
 });
+
+var value = JSON.stringify({ color: '#000' });
 
 module.exports = {
   module: {
     loaders: [
-      { test: /\.css$/, loader: "style!css!modify?" + querys }
+      { test: /\.css$/, loader: "style!css!modify?options=" + new Buffer(options).toString('base64') + '&value=' + new Buffer(value).toString('base64') }
     ]
   }
 };
